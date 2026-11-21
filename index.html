@@ -16,35 +16,53 @@
   --text-sub:#475569;
   --social-fb:#1877f2;
   --social-yt:#ff0000;
+  --card-scale:1;
 }
 
 *{box-sizing:border-box}
-body{margin:0;background:#0f172a;color:#fff;font-family:"Hind Siliguri",sans-serif;}
-.app{max-width:1400px;margin:auto;padding:25px}
-.panel{background:#fff;border-radius:20px;padding:25px;box-shadow:0 20px 50px rgba(0,0,0,.4);margin-bottom:25px;color:#0f172a}
-h1{margin:0 0 5px;font-size:26px;font-weight:700;color:#1e1b4b}
-.lead{margin:0 0 20px;color:#64748b;font-size:14px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+body{margin:0;background:#0f172a;color:#fff;font-family:"Hind Siliguri",sans-serif;overflow-x:hidden;}
+.app{max-width:1400px;margin:auto;padding:20px}
+.panel{background:#fff;border-radius:20px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.4);margin-bottom:22px;color:#0f172a}
+h1{margin:0 0 5px;font-size:24px;font-weight:700;color:#1e1b4b}
+.lead{margin:0 0 18px;color:#64748b;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#1e1b4b}
 input[type=text],textarea{width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:10px;font:inherit;outline:none;background:#f8fafc}
 textarea{min-height:68px;resize:vertical}
-input[type=file]{width:100%;padding:8px;border:2px dashed #cbd5e1;border-radius:10px;background:#f8fafc;cursor:pointer}
+input[type=file]{width:100%;padding:8px;border:2px dashed #cbd5e1;border-radius:10px;background:#f8fafc;cursor:pointer;font-size:13px}
 input[type=color]{width:100%;height:42px;border:2px solid #e2e8f0;border-radius:10px;background:#f8fafc;cursor:pointer;padding:2px}
 input:focus,textarea:focus{border-color:var(--primary);background:#fff}
 .range{display:flex;align-items:center;gap:12px}
 .range input{flex:1}
 .num{width:40px;text-align:center;font-weight:700;color:#1e1b4b}
 .checks{display:flex;gap:15px;flex-wrap:wrap;margin-top:12px}
-.checks label{font-size:14px;font-weight:600;cursor:pointer;color:#0f172a}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-button{border:0;border-radius:10px;padding:12px 22px;font:700 15px "Hind Siliguri",sans-serif;cursor:pointer;transition:all 0.2s}
-button:hover{opacity:0.9;transform:translateY(-2px)}
+.checks label{font-size:14px;font-weight:600;cursor:pointer;color:#0f172a;display:flex;align-items:center;gap:6px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button{border:0;border-radius:10px;padding:11px 18px;font:700 14px "Hind Siliguri",sans-serif;cursor:pointer;transition:all 0.2s}
+button:hover{opacity:0.92;transform:translateY(-1px)}
 .primary{background:var(--primary);color:#fff}
 .secondary{background:#e2e8f0;color:#334155}
 .dark{background:#1e293b;color:#fff}
 .danger{background:#ef4444;color:#fff}
-#stageWrap{background:#1e293b;border-radius:20px;padding:30px;overflow:auto;display:flex;justify-content:center}
 
+/* রেস্পন্সসিভ প্রিভিউ র‍্যাপার */
+#stageWrap{
+  background:#1e293b;
+  border-radius:20px;
+  padding:24px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  overflow:hidden;
+}
+#cardScaler{
+  width:calc(1080px * var(--card-scale));
+  height:calc(1080px * var(--card-scale));
+  position:relative;
+  flex-shrink:0;
+}
+
+/* মূল ১০৮০ × ১০৮০ ফটোকার্ড লেআউট */
 .card{
   width:1080px;
   height:1080px;
@@ -54,6 +72,8 @@ button:hover{opacity:0.9;transform:translateY(-2px)}
   box-shadow:0 25px 60px rgba(0,0,0,0.85);
   display:flex;
   flex-direction:column;
+  transform:scale(var(--card-scale));
+  transform-origin:top left;
 }
 
 .topHeader{
@@ -209,15 +229,27 @@ button:hover{opacity:0.9;transform:translateY(-2px)}
   letter-spacing:1px;
 }
 
-@media(max-width:1050px){.grid{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.grid{grid-template-columns:1fr} .app{padding:10px}}
+@media(max-width:1150px){
+  #stageWrap{padding:16px}
+}
+@media(max-width:1050px){
+  .grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr}
+  .app{padding:10px}
+  .panel{padding:16px;border-radius:14px}
+  h1{font-size:20px}
+  #stageWrap{padding:12px;border-radius:14px}
+  .actions button{flex:1 1 calc(50% - 6px);text-align:center;padding:10px 12px}
+}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="panel">
     <h1>Chandpur Dak — 1:1 Square Studio</h1>
-    <p class="lead">সোশ্যাল মিডিয়ার জন্য ১:১ স্কয়ার ফরম্যাট (১০৮০ × ১০৮০ পিক্সেল) ও অটো-ডেট ফটোকার্ড স্টুডিও।</p>
+    <p class="lead">মোবাইল ও ডেস্কটপ রেস্পন্সসিভ ১:১ স্কয়ার ফরম্যাট (১০৮০ × ১০৮০ পিক্সেল) ও অটো-ডেট ফটোকার্ড স্টুডিও।</p>
 
     <div class="grid">
       <div class="field"><label>নিউজের ছবি</label><input id="photoInput" type="file" accept="image/*"></div>
@@ -254,51 +286,53 @@ button:hover{opacity:0.9;transform:translateY(-2px)}
   </div>
 
   <div id="stageWrap">
-    <div id="card" class="card">
-      <div class="topHeader">
-        <div class="logoBox">
-          <img id="logo" src="Untitled design-1.png" alt="Chandpur Dak Logo">
-        </div>
-        <div id="dateBadge" class="datePill"></div>
-      </div>
-
-      <div class="photoWrapper">
-        <div class="photoSection">
-          <div id="photoTag" class="photoTag">
-            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h10v2H7zm0 4h7v2H7z"/></svg>
-            সংগৃহীত ছবি
+    <div id="cardScaler">
+      <div id="card" class="card">
+        <div class="topHeader">
+          <div class="logoBox">
+            <img id="logo" src="Untitled design-1.png" alt="Chandpur Dak Logo">
           </div>
-          <div class="photoMain"><img id="photo" alt="News Photo"></div>
-          <div id="placeholder" class="placeholder">এখানে আপনার নিউজের ছবি আপলোড করুন</div>
-        </div>
-      </div>
-
-      <div class="contentSection">
-        <div class="headlineArea">
-          <div id="headline" class="headline">শাহমাহমুদপুরে শিক্ষক শাহনেওয়াজ<br>খানের রাজকীয় বিদায় সংবর্ধনা</div>
+          <div id="dateBadge" class="datePill"></div>
         </div>
 
-        <div class="bottomMeta">
-          <div class="detailsBadge">
-            <span id="detailsText">বিস্তারিত কমেন্টে</span> <span>➔</span>
-          </div>
-
-          <div class="socialGroup">
-            <div class="socialItem">
-              <div class="socialIcon fb-icon">f</div>
-              <span id="social1Text">facebook.com/chandpurdak</span>
+        <div class="photoWrapper">
+          <div class="photoSection">
+            <div id="photoTag" class="photoTag">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h10v2H7zm0 4h7v2H7z"/></svg>
+              সংগৃহীত ছবি
             </div>
-            <div class="socialItem">
-              <div class="socialIcon yt-icon">▶</div>
-              <span id="social2Text">youtube.com/chandpurdak</span>
+            <div class="photoMain"><img id="photo" alt="News Photo"></div>
+            <div id="placeholder" class="placeholder">এখানে আপনার নিউজের ছবি আপলোড করুন</div>
+          </div>
+        </div>
+
+        <div class="contentSection">
+          <div class="headlineArea">
+            <div id="headline" class="headline">শাহমাহমুদপুরে শিক্ষক শাহনেওয়াজ<br>খানের রাজকীয় বিদায় সংবর্ধনা</div>
+          </div>
+
+          <div class="bottomMeta">
+            <div class="detailsBadge">
+              <span id="detailsText">বিস্তারিত কমেন্টে</span> <span>➔</span>
+            </div>
+
+            <div class="socialGroup">
+              <div class="socialItem">
+                <div class="socialIcon fb-icon">f</div>
+                <span id="social1Text">facebook.com/chandpurdak</span>
+              </div>
+              <div class="socialItem">
+                <div class="socialIcon yt-icon">▶</div>
+                <span id="social2Text">youtube.com/chandpurdak</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="adBannerSection">
-        <img id="adBannerImage" alt="Ad Banner">
-        <div id="adPlaceholder" class="adPlaceholder">Sponsored Ad Banner Space — 1080 × 130 px</div>
+        <div class="adBannerSection">
+          <img id="adBannerImage" alt="Ad Banner">
+          <div id="adPlaceholder" class="adPlaceholder">Sponsored Ad Banner Space — 1080 × 130 px</div>
+        </div>
       </div>
     </div>
   </div>
@@ -308,6 +342,18 @@ button:hover{opacity:0.9;transform:translateY(-2px)}
 <script>
 const $ = id => document.getElementById(id);
 const rootStyle = document.documentElement.style;
+
+function updateCardScale() {
+  const stage = $('stageWrap');
+  if (!stage) return;
+  const styles = getComputedStyle(stage);
+  const padX = parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+  const availableWidth = stage.clientWidth - padX;
+  const scale = Math.min(1, Math.max(0.2, availableWidth / 1080));
+  rootStyle.setProperty('--card-scale', scale);
+}
+
+window.addEventListener('resize', updateCardScale);
 
 function getFormattedDate() {
   const months = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
@@ -326,6 +372,7 @@ function getFormattedDate() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  updateCardScale();
   const autoDate = getFormattedDate();
   $('dateInput').value = autoDate;
   $('dateBadge').innerText = autoDate;
@@ -397,11 +444,22 @@ function resetCard(){
 
 function downloadCard(type){
   const card = $('card');
-  html2canvas(card, {scale: 2, useCORS: true}).then(canvas => {
+  const prevTransform = card.style.transform;
+  card.style.transform = 'scale(1)';
+
+  html2canvas(card, {
+    scale: 1,
+    width: 1080,
+    height: 1080,
+    useCORS: true
+  }).then(canvas => {
+    card.style.transform = prevTransform;
     const link = document.createElement('a');
     link.download = `chandpurdak-square-photocard.${type}`;
     link.href = canvas.toDataURL(`image/${type === 'jpg' ? 'jpeg' : 'png'}`, 1.0);
     link.click();
+  }).catch(() => {
+    card.style.transform = prevTransform;
   });
 }
 </script>

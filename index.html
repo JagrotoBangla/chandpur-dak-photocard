@@ -3,153 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chandpur Dak - Fully Responsive Photocard Studio</title>
+<title>Chandpur Dak - 1:1 Square Photocard Studio</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
 @import url('https://fonts.maateen.com/kalpurush/font.css');
 
 :root{
-  --primary:#800e13;
+  --primary:#991b1b;
   --accent:#d97706;
   --bg-card:#ffffff;
   --text-main:#0f172a;
-  --text-sub:#334155;
+  --text-sub:#475569;
   --social-fb:#1877f2;
   --social-yt:#ff0000;
 }
 
 *{box-sizing:border-box}
-body{margin:0;background:#1e293b;color:#fff;font-family:"Hind Siliguri",sans-serif;}
-.app{max-width:1400px;margin:auto;padding:15px}
-
-.panel{background:#fff;border-radius:16px;padding:20px;box-shadow:0 15px 35px rgba(0,0,0,.25);margin-bottom:20px;color:#0f172a}
-h1{margin:0 0 5px;font-size:24px;font-weight:700;color:#1e1b4b}
-.lead{margin:0 0 15px;color:#64748b;font-size:13px}
-
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+body{margin:0;background:#0f172a;color:#fff;font-family:"Hind Siliguri",sans-serif;}
+.app{max-width:1400px;margin:auto;padding:25px}
+.panel{background:#fff;border-radius:20px;padding:25px;box-shadow:0 20px 50px rgba(0,0,0,.4);margin-bottom:25px;color:#0f172a}
+h1{margin:0 0 5px;font-size:26px;font-weight:700;color:#1e1b4b}
+.lead{margin:0 0 20px;color:#64748b;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:#1e1b4b}
-input[type=text],textarea{width:100%;padding:10px 12px;border:2px solid #e2e8f0;border-radius:10px;font:inherit;outline:none;background:#f8fafc}
-textarea{min-height:70px;resize:vertical}
+input[type=text],textarea{width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:10px;font:inherit;outline:none;background:#f8fafc}
+textarea{min-height:68px;resize:vertical}
 input[type=file]{width:100%;padding:8px;border:2px dashed #cbd5e1;border-radius:10px;background:#f8fafc;cursor:pointer}
-input[type=color]{width:100%;height:40px;border:2px solid #e2e8f0;border-radius:10px;background:#f8fafc;cursor:pointer;padding:2px}
+input[type=color]{width:100%;height:42px;border:2px solid #e2e8f0;border-radius:10px;background:#f8fafc;cursor:pointer;padding:2px}
 input:focus,textarea:focus{border-color:var(--primary);background:#fff}
-
 .range{display:flex;align-items:center;gap:12px}
 .range input{flex:1}
 .num{width:40px;text-align:center;font-weight:700;color:#1e1b4b}
-
 .checks{display:flex;gap:15px;flex-wrap:wrap;margin-top:12px}
 .checks label{font-size:14px;font-weight:600;cursor:pointer;color:#0f172a}
-
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-button{border:0;border-radius:10px;padding:11px 18px;font:700 14px "Hind Siliguri",sans-serif;cursor:pointer;transition:all 0.2s}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+button{border:0;border-radius:10px;padding:12px 22px;font:700 15px "Hind Siliguri",sans-serif;cursor:pointer;transition:all 0.2s}
 button:hover{opacity:0.9;transform:translateY(-2px)}
 .primary{background:var(--primary);color:#fff}
 .secondary{background:#e2e8f0;color:#334155}
-.dark{background:#0f172a;color:#fff}
+.dark{background:#1e293b;color:#fff}
 .danger{background:#ef4444;color:#fff}
+#stageWrap{background:#1e293b;border-radius:20px;padding:30px;overflow:auto;display:flex;justify-content:center}
 
-/* মোবাইল রেসপনসিভ প্রিভিউ বক্স */
-#stageWrap{background:#0f172a;border-radius:16px;padding:20px;display:flex;justify-content:center;align-items:center;width:100%;overflow:hidden;}
-
-.preview-container {
-  width: 100%;
-  max-width: 540px; /* মোবাইলে প্রিভিউ সুন্দর দেখানোর জন্য অর্ধেক সাইজ */
-  aspect-ratio: 1080 / 1350;
-  position: relative;
-}
-
-/* ফটোকার্ড মূল ডিজাইন (১০৮০ × ১৩৫০ ফিক্সড) */
 .card{
-  width: 1080px;
-  height: 1350px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform-origin: top left;
-  background: #ffffff !important;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+  width:1080px;
+  height:1080px;
+  position:relative;
+  overflow:hidden;
+  background:var(--bg-card);
+  box-shadow:0 25px 60px rgba(0,0,0,0.85);
+  display:flex;
+  flex-direction:column;
 }
 
-/* ছবি সেকশন (৬৬০px) */
-.photoSection{position:absolute;top:0;left:0;right:0;height:660px;background:#111;overflow:hidden}
+.topHeader{
+  height:75px;
+  background:var(--bg-card);
+  padding:0 35px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:4px solid var(--primary);
+  z-index:10;
+}
+.logoBox{
+  display:flex;
+  align-items:center;
+  height:52px;
+}
+.logoBox img{
+  max-height:48px;
+  max-width:260px;
+  object-fit:contain;
+}
+.datePill{
+  background:var(--primary);
+  color:#fff;
+  padding:7px 22px;
+  border-radius:6px;
+  font-size:19px;
+  font-weight:700;
+  letter-spacing:0.5px;
+}
+
+.photoWrapper{
+  height:530px;
+  padding:18px 25px 0 25px;
+  background:var(--bg-card);
+}
+.photoSection{
+  width:100%;
+  height:100%;
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  background:#0f172a;
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
 .photoMain{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1}
 .photoMain img{width:100%;height:100%;object-fit:cover;display:none}
-.placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1e293b;color:#94a3b8;font-size:26px;font-weight:700;z-index:2;position:relative}
+.placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1e293b;color:#94a3b8;font-size:24px;font-weight:700;z-index:2;position:relative}
 
-/* সংগৃহীত ছবি ট্যাগ */
-.photoTag{position:absolute;left:30px;top:30px;z-index:5;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.25);padding:6px 16px;border-radius:8px;color:#fff;font-size:18px;font-weight:500;display:flex;align-items:center;gap:8px}
-.photoTag svg{width:20px;height:20px;fill:#fff}
+.photoTag{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  z-index:5;
+  background:rgba(15,23,42,0.75);
+  backdrop-filter:blur(6px);
+  border-left:4px solid var(--accent);
+  padding:6px 16px;
+  border-radius:6px;
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.photoTag svg{width:18px;height:18px;fill:#fff}
 
-/* লোগো বক্স */
-.logoTopBox{position:absolute;right:35px;top:25px;z-index:5;background:#ffffff;padding:8px 18px;border-radius:12px;height:65px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.25)}
-.logoTopBox img{max-height:50px;max-width:300px;object-fit:contain}
+.contentSection{
+  flex:1;
+  background:var(--bg-card);
+  padding:20px 45px 15px 45px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  text-align:center;
+}
 
-/* তারিখের ব্যাজ */
-.dateBadge{position:absolute;right:0;bottom:0;z-index:5;background:#800e13;color:#fff;padding:10px 32px;font-size:20px;font-weight:700;border-top-left-radius:12px}
+.headlineArea{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+}
+.headline{
+  color:var(--text-main);
+  font-family:'Kalpurush', 'SolaimanLipi', 'Hind Siliguri', sans-serif;
+  font-size:48px;
+  line-height:1.35;
+  font-weight:700;
+  white-space:pre-line;
+  max-width:980px;
+}
 
-/* কনটেন্ট সেকশন */
-.contentSection{position:absolute;top:660px;left:0;right:0;bottom:150px;background:#ffffff;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:30px 50px 20px 50px;text-align:center}
-
-/* সাব-হেডিং পিল */
-.subHeadline{display:inline-block;background:#f1f5f9;color:var(--accent);padding:8px 28px;border-radius:50px;font-size:22px;font-weight:700;border:2px solid var(--accent);box-shadow:0 4px 15px rgba(0,0,0,0.05)}
-.subHeadline:empty{display:none}
-
-/* প্রধান শিরোনাম */
-.headline{color:var(--text-main);font-family:'Kalpurush', 'SolaimanLipi', 'Hind Siliguri', sans-serif;font-size:50px;line-height:1.4;font-weight:700;white-space:pre-line;max-width:980px;margin:15px 0}
-
-/* বিস্তারিত কমেন্ট পিল */
-.detailsBox{background:#f8fafc;border:2px solid #cbd5e1;padding:10px 42px;border-radius:50px;color:var(--text-sub);font-size:22px;font-weight:700;display:inline-flex;align-items:center;gap:14px;margin-bottom:10px;box-shadow:0 4px 15px rgba(0,0,0,0.05)}
-.arrowIcon{color:var(--accent);font-size:20px;font-weight:700}
-
-/* ফুটার সোশ্যাল বার */
-.footerBar{width:100%;border-top:2px solid #e2e8f0;padding-top:15px;display:flex;align-items:center;justify-content:center;gap:60px;color:#475569;font-size:17px;font-weight:600}
-.socialItem{display:flex;align-items:center;gap:10px}
-.socialIcon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:bold}
+.bottomMeta{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-top:14px;
+  border-top:2px solid #e2e8f0;
+}
+.detailsBadge{
+  background:var(--accent);
+  color:#fff;
+  padding:7px 24px;
+  border-radius:50px;
+  font-size:19px;
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  box-shadow:0 4px 12px rgba(217,119,6,0.25);
+}
+.socialGroup{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  color:var(--text-sub);
+  font-size:16px;
+  font-weight:700;
+}
+.socialItem{display:flex;align-items:center;gap:8px}
+.socialIcon{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:bold}
 .fb-icon{background:var(--social-fb)}
 .yt-icon{background:var(--social-yt)}
 
-/* বিজ্ঞাপন ব্যানার সেকশন (১০৮০ × ১৫০) */
-.adBannerSection{position:absolute;bottom:0;left:0;right:0;height:150px;background:#000;border-top:2px solid #cbd5e1;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:10}
-.adBannerSection img{width:1080px;height:150px;object-fit:cover;display:none}
-.adPlaceholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f1f5f9,#e2e8f0);color:#64748b;font-size:20px;font-weight:700;letter-spacing:1px}
+.adBannerSection{
+  height:130px;
+  width:1080px;
+  background:#000;
+  border-top:2px solid #cbd5e1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  z-index:10;
+}
+.adBannerSection img{width:1080px;height:130px;object-fit:cover;display:none}
+.adPlaceholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(90deg,#f1f5f9,#e2e8f0,#f1f5f9);
+  color:#64748b;
+  font-size:19px;
+  font-weight:700;
+  letter-spacing:1px;
+}
 
-@media(max-width:1100px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:700px){
-  .grid{grid-template-columns:1fr} 
-  .app{padding:8px}
-  .panel{padding:12px}
-  h1{font-size:20px}
-  button{width:100%;text-align:center}
-  .actions{flex-direction:column}
-}
+@media(max-width:1050px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.grid{grid-template-columns:1fr} .app{padding:10px}}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="panel">
-    <h1>Chandpur Dak - Responsive Studio</h1>
-    <p class="lead">মোবাইল এবং কম্পিউটার উভয় ডিভাইসেই নিখুঁতভাবে কাজ করার জন্য আপডেট করা হয়েছে।</p>
-    
+    <h1>Chandpur Dak — 1:1 Square Studio</h1>
+    <p class="lead">সোশ্যাল মিডিয়ার জন্য ১:১ স্কয়ার ফরম্যাট (১০৮০ × ১০৮০ পিক্সেল) ও অটো-ডেট ফটোকার্ড স্টুডিও।</p>
+
     <div class="grid">
       <div class="field"><label>নিউজের ছবি</label><input id="photoInput" type="file" accept="image/*"></div>
-      <div class="field"><label>বিজ্ঞাপন ব্যানার (১০৮০ × ১৫০)</label><input id="adInput" type="file" accept="image/*"></div>
+      <div class="field"><label>বিজ্ঞাপন ব্যানার (১০৮০ × ১৩০)</label><input id="adInput" type="file" accept="image/*"></div>
       <div class="field"><label>লোগো পরিবর্তন করুন (ঐচ্ছিক)</label><input id="logoInput" type="file" accept="image/*"></div>
-      
+
       <div class="field"><label>তারিখ (অটো আপডেট)</label><input id="dateInput" type="text" value=""></div>
       <div class="field"><label>কার্ড ব্যাকগ্রাউন্ড কালার</label><input id="bgColorPicker" type="color" value="#ffffff"></div>
-      <div class="field"><label>শিরোনামের ফন্ট কালার</label><input id="textColorPicker" type="color" value="#0f172a"></div>
-      <div class="field"><label>অ্যাকসেন্ট কালার (বর্ডার ও অ্যারো)</label><input id="accentColorPicker" type="color" value="#d97706"></div>
+      <div class="field"><label>প্রাইমারি থিম কালার (বর্ডার ও তারিখ)</label><input id="primaryColorPicker" type="color" value="#991b1b"></div>
 
-      <div class="field"><label>সাব-শিরোনাম / ক্যাটাগরি</label><input id="subHeadlineInput" type="text" value="শাহমাহমুদপুরে শিক্ষক শাহনেওয়াজ খানের রাজকীয় বিদায় সংবর্ধনা"></div>
-      <div class="field"><label>প্রধান শিরোনাম</label><textarea id="headlineInput">শাহমাহমুদপুরে শিক্ষক শাহনেওয়াজ\nখানের রাজকীয় বিদায় সংবর্ধনা</textarea></div>
+      <div class="field"><label>শিরোনামের ফন্ট কালার</label><input id="textColorPicker" type="color" value="#0f172a"></div>
+      <div class="field"><label>অ্যাকসেন্ট কালার (বিস্তারিত বাটন)</label><input id="accentColorPicker" type="color" value="#d97706"></div>
       <div class="field"><label>বিস্তারিত কমেন্ট টেক্সট</label><input id="detailsInput" type="text" value="বিস্তারিত কমেন্টে"></div>
+
+      <div class="field"><label>প্রধান শিরোনাম</label><textarea id="headlineInput">শাহমাহমুদপুরে শিক্ষক শাহনেওয়াজ
+খানের রাজকীয় বিদায় সংবর্ধনা</textarea></div>
       <div class="field"><label>ফেসবুক পেজ লিংক</label><input id="social1Input" type="text" value="facebook.com/chandpurdak"></div>
       <div class="field"><label>ইউটিউব চ্যানেল লিংক</label><input id="social2Input" type="text" value="youtube.com/chandpurdak"></div>
-      <div class="field"><label>শিরোনামের ফন্ট সাইজ</label><div class="range"><input id="fontSize" type="range" min="36" max="64" value="50"><span id="fontSizeValue" class="num">50</span></div></div>
+
+      <div class="field"><label>শিরোনামের ফন্ট সাইজ</label><div class="range"><input id="fontSize" type="range" min="34" max="62" value="48"><span id="fontSizeValue" class="num">48</span></div></div>
     </div>
 
     <div class="checks">
@@ -157,8 +245,8 @@ button:hover{opacity:0.9;transform:translateY(-2px)}
     </div>
 
     <div class="actions">
-      <button class="primary" onclick="downloadCard('png')">PNG ডাউনলোড — 1080×1350</button>
-      <button class="dark" onclick="downloadCard('jpg')">JPG ডাউনলোড — 1080×1350</button>
+      <button class="primary" onclick="downloadCard('png')">PNG ডাউনলোড — 1080×1080</button>
+      <button class="dark" onclick="downloadCard('jpg')">JPG ডাউনলোড — 1080×1080</button>
       <button class="secondary" onclick="resetCard()">রিসেট করুন</button>
       <button class="danger" onclick="clearPhoto()">ছবি সরান</button>
       <button class="secondary" onclick="clearAd()">বিজ্ঞাপন ব্যানার সরান</button>
@@ -166,33 +254,36 @@ button:hover{opacity:0.9;transform:translateY(-2px)}
   </div>
 
   <div id="stageWrap">
-    <div class="preview-container" id="previewContainer">
-      <div id="card" class="card">
+    <div id="card" class="card">
+      <div class="topHeader">
+        <div class="logoBox">
+          <img id="logo" src="Untitled design-1.png" alt="Chandpur Dak Logo">
+        </div>
+        <div id="dateBadge" class="datePill"></div>
+      </div>
+
+      <div class="photoWrapper">
         <div class="photoSection">
           <div id="photoTag" class="photoTag">
             <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h10v2H7zm0 4h7v2H7z"/></svg>
             সংগৃহীত ছবি
           </div>
-          
-          <div class="logoTopBox">
-            <img id="logo" src="Untitled design-1.png" alt="Chandpur Dak Logo">
-          </div>
-
           <div class="photoMain"><img id="photo" alt="News Photo"></div>
           <div id="placeholder" class="placeholder">এখানে আপনার নিউজের ছবি আপলোড করুন</div>
+        </div>
+      </div>
 
-          <div id="dateBadge" class="dateBadge"></div>
+      <div class="contentSection">
+        <div class="headlineArea">
+          <div id="headline" class="headline">শাহমাহমুদপুরে শিক্ষক শাহনেওয়াজ<br>খানের রাজকীয় বিদায় সংবর্ধনা</div>
         </div>
 
-        <div class="contentSection">
-          <div id="subHeadline" class="subHeadline">শাহমাহমুদপুরে শিক্ষক শাহনেওয়াজ খানের রাজকীয় বিদায় সংবর্ধনা</div>
-          <div id="headline" class="headline">শাহমাহমুদপুরে শিক্ষক শাহনেওয়াজ<br>খানের রাজকীয় বিদায় সংবর্ধনা</div>
-          
-          <div class="detailsBox">
-            <span class="arrowIcon">»»</span> <span id="detailsText">বিস্তারিত কমেন্টে</span> <span class="arrowIcon">««</span>
+        <div class="bottomMeta">
+          <div class="detailsBadge">
+            <span id="detailsText">বিস্তারিত কমেন্টে</span> <span>➔</span>
           </div>
 
-          <div class="footerBar">
+          <div class="socialGroup">
             <div class="socialItem">
               <div class="socialIcon fb-icon">f</div>
               <span id="social1Text">facebook.com/chandpurdak</span>
@@ -203,11 +294,11 @@ button:hover{opacity:0.9;transform:translateY(-2px)}
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="adBannerSection">
-          <img id="adBannerImage" alt="Ad Banner">
-          <div id="adPlaceholder" class="adPlaceholder">Sponsored Ad Banner Space — 1080 × 150 px</div>
-        </div>
+      <div class="adBannerSection">
+        <img id="adBannerImage" alt="Ad Banner">
+        <div id="adPlaceholder" class="adPlaceholder">Sponsored Ad Banner Space — 1080 × 130 px</div>
       </div>
     </div>
   </div>
@@ -218,74 +309,61 @@ button:hover{opacity:0.9;transform:translateY(-2px)}
 const $ = id => document.getElementById(id);
 const rootStyle = document.documentElement.style;
 
-function updateCardScale() {
-  const container = $('previewContainer');
-  const card = $('card');
-  const currentWidth = container.clientWidth;
-  const scale = currentWidth / 1080;
-  card.style.transform = `scale(${scale})`;
-  container.style.height = `${1350 * scale}px`;
+function getFormattedDate() {
+  const months = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
+  const digits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+
+  const now = new Date();
+  const day = now.getDate();
+  const month = months[now.getMonth()];
+  const year = now.getFullYear();
+
+  const convertToBanglaNum = (num) => {
+    return num.toString().split('').map(char => digits[char] !== undefined ? digits[char] : char).join('');
+  };
+
+  return `${convertToBanglaNum(day)} ${month} ${convertToBanglaNum(year)}`;
 }
 
-window.addEventListener('resize', updateCardScale);
-
 window.addEventListener('DOMContentLoaded', () => {
-  updateCardScale();
   const autoDate = getFormattedDate();
   $('dateInput').value = autoDate;
   $('dateBadge').innerText = autoDate;
 });
 
-function getFormattedDate() {
-  const months = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
-  const digits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
-  const now = new Date();
-  const day = now.getDate();
-  const month = months[now.getMonth()];
-  const year = now.getFullYear();
-  const convertToBanglaNum = (num) => {
-    return num.toString().split('').map(char => digits[char] !== undefined ? digits[char] : char).join('');
-  };
-  return `${convertToBanglaNum(day)} ${month} ${convertToBanglaNum(year)}`;
-}
+$('bgColorPicker').oninput = e => rootStyle.setProperty('--bg-card', e.target.value);
+$('primaryColorPicker').oninput = e => rootStyle.setProperty('--primary', e.target.value);
+$('textColorPicker').oninput = e => rootStyle.setProperty('--text-main', e.target.value);
+$('accentColorPicker').oninput = e => rootStyle.setProperty('--accent', e.target.value);
 
-// কালার পরিবর্তন হ্যান্ডলার
-$('bgColorPicker').oninput = e => {
-  rootStyle.setProperty('--bg-card', e.target.value);
-  document.querySelectorAll('.contentSection').forEach(el => el.style.background = e.target.value);
-};
-$('textColorPicker').oninput = e => rootStyle.setProperty('--text-main', e.target.value);$('accentColorPicker').oninput = e => rootStyle.setProperty('--accent', e.target.value);
+$('dateInput').oninput = e => $('dateBadge').innerText = e.target.value;
+$('headlineInput').oninput = e => $('headline').innerText = e.target.value;
+$('detailsInput').oninput = e => $('detailsText').innerText = e.target.value;
+$('social1Input').oninput = e => $('social1Text').innerText = e.target.value;
+$('social2Input').oninput = e => $('social2Text').innerText = e.target.value;
 
-// টেক্সট লাইভ এডিটিং
-$('dateInput').oninput = e =>$('dateBadge').innerText = e.target.value;
-$('subHeadlineInput').oninput = e => {$('subHeadline').innerText = e.target.value;
-  $('subHeadline').style.display = e.target.value ? 'inline-block' : 'none';
-};
-$('headlineInput').oninput = e =>$('headline').innerText = e.target.value;
-$('detailsInput').oninput = e =>$('detailsText').innerText = e.target.value;
-$('social1Input').oninput = e =>$('social1Text').innerText = e.target.value;
-$('social2Input').oninput = e =>$('social2Text').innerText = e.target.value;
-
-$('fontSize').oninput = e => {$('fontSizeValue').innerText = e.target.value;
+$('fontSize').oninput = e => {
+  $('fontSizeValue').innerText = e.target.value;
   $('headline').style.fontSize = e.target.value + 'px';
 };
 
-$('showTag').onchange = e =>$('photoTag').style.display = e.target.checked ? 'flex' : 'none';
+$('showTag').onchange = e => $('photoTag').style.display = e.target.checked ? 'flex' : 'none';
 
-// ছবি আপলোড হ্যান্ডলার
 $('photoInput').onchange = e => {
   const file = e.target.files[0];
   if(file){
     const url = URL.createObjectURL(file);
     $('photo').src = url;
-    $('photo').style.display = 'block';$('placeholder').style.display = 'none';
+    $('photo').style.display = 'block';
+    $('placeholder').style.display = 'none';
   }
 };
 
 $('logoInput').onchange = e => {
   const file = e.target.files[0];
   if(file){
-    $('logo').src = URL.createObjectURL(file);$('logo').style.display = 'block';
+    $('logo').src = URL.createObjectURL(file);
+    $('logo').style.display = 'block';
   }
 };
 
@@ -294,18 +372,23 @@ $('adInput').onchange = e => {
   if(file){
     const url = URL.createObjectURL(file);
     $('adBannerImage').src = url;
-    $('adBannerImage').style.display = 'block';$('adPlaceholder').style.display = 'none';
+    $('adBannerImage').style.display = 'block';
+    $('adPlaceholder').style.display = 'none';
   }
 };
 
 function clearPhoto(){
-  $('photoInput').value = '';$('photo').src = '';
-  $('photo').style.display = 'none';$('placeholder').style.display = 'flex';
+  $('photoInput').value = '';
+  $('photo').src = '';
+  $('photo').style.display = 'none';
+  $('placeholder').style.display = 'flex';
 }
 
 function clearAd(){
-  $('adInput').value = '';$('adBannerImage').src = '';
-  $('adBannerImage').style.display = 'none';$('adPlaceholder').style.display = 'flex';
+  $('adInput').value = '';
+  $('adBannerImage').src = '';
+  $('adBannerImage').style.display = 'none';
+  $('adPlaceholder').style.display = 'flex';
 }
 
 function resetCard(){
@@ -314,19 +397,11 @@ function resetCard(){
 
 function downloadCard(type){
   const card = $('card');
-  // কালো ডিসপ্লে সমস্যা এড়াতে স্কেল রিসেট ও ব্যাকগ্রাউন্ড ফিক্সড রেখে রেন্ডার করা হচ্ছে
-  const originalTransform = card.style.transform;
-  card.style.transform = 'scale(1)';
-
-  html2canvas(card, {scale: 2, useCORS: true, backgroundColor: '#ffffff'}).then(canvas => {
-    card.style.transform = originalTransform;
+  html2canvas(card, {scale: 2, useCORS: true}).then(canvas => {
     const link = document.createElement('a');
-    link.download = `chandpurdak-photocard.${type}`;
+    link.download = `chandpurdak-square-photocard.${type}`;
     link.href = canvas.toDataURL(`image/${type === 'jpg' ? 'jpeg' : 'png'}`, 1.0);
     link.click();
-  }).catch(err => {
-    card.style.transform = originalTransform;
-    console.error(err);
   });
 }
 </script>
